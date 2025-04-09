@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "Node16",
+		"rootDir": "src",
+		"moduleResolution": "node16",
+		"baseUrl": "src",
+		"paths": {
+			"@/*": ["*"]
+		},
+		"outDir": "dist",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"skipLibCheck": true,
+		"allowUnreachableCode": true
+	}
+}
