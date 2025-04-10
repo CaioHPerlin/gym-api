@@ -93,7 +93,7 @@ express-ts-boilerplate/
 │   ├── errors/             # Custom error classes
 │   ├── middleware/         # Custom middleware
 │   ├── utils/              # Utility functions
-│   └── app.ts              # Main application file
+│   └── index.ts              # Main application file
 ├── .gitignore              # Git ignore file
 ├── .prettierrc             # Prettier configuration
 ├── .prettierignore         # Prettier ignore file
