@@ -1,3 +1,4 @@
+import env from "@/config/env";
 import { CustomError } from "@/errors";
 import { getErrorMessage } from "@/utils";
 import { NextFunction, Request, Response } from "express";
@@ -9,7 +10,7 @@ const errorHandler = (
 	next: NextFunction
 ): void => {
 	// Debug error handling
-	if (res.headersSent || process.env.DEBUG === "true") {
+	if (res.headersSent || env.DEBUG) {
 		next(err);
 		return;
 	}
