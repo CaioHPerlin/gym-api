@@ -1,6 +1,6 @@
 import { integer, pgTable, varchar, timestamp, boolean, text } from "drizzle-orm/pg-core";
 
-const user = pgTable("user", {
+export const user = pgTable("user", {
 	id: integer().primaryKey().generatedAlwaysAsIdentity(),
 	name: varchar({ length: 255 }).notNull(),
 	email: varchar({ length: 255 }).notNull().unique(),
@@ -11,5 +11,3 @@ const user = pgTable("user", {
 	updatedAt: timestamp().defaultNow().notNull(), // Automatically updated on modification
 	deletedAt: timestamp(), // For soft deletes
 });
-
-export default user;

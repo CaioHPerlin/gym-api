@@ -1,10 +1,8 @@
-import CustomError from "./CustomError";
+import { CustomError } from "@/errors/CustomError";
 
-class NotImplementedError extends CustomError {
+export class NotImplementedError extends CustomError {
 	constructor(functionality: string = "Funcionality") {
 		const message = functionality + " not implemented";
 		super(message, 501);
 	}
 }
-
-export default NotImplementedError;

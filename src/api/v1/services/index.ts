@@ -1,1 +1,2 @@
-export { default as HealthService } from "./HealthService";
+export * from "./HealthService";
+export * from "./UserService";

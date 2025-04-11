@@ -1,7 +1,7 @@
 import { ServiceUnavailableError } from "@/errors";
 import { HealthStatus } from "../interfaces";
 
-class HealthService {
+export class HealthService {
 	public static get healthStatus(): HealthStatus {
 		return {
 			status: "UP",
@@ -9,5 +9,3 @@ class HealthService {
 		};
 	}
 }
-
-export default HealthService;

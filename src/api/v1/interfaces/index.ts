@@ -1,1 +1,1 @@
-export { default as HealthStatus } from "./HealthStatus";
+export * from "./HealthStatus";

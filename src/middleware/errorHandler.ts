@@ -3,7 +3,7 @@ import { CustomError } from "@/errors";
 import { getErrorMessage } from "@/utils";
 import { NextFunction, Request, Response } from "express";
 
-const errorHandler = (
+export const errorHandler = (
 	err: unknown,
 	_: Request,
 	res: Response,
@@ -32,5 +32,3 @@ const errorHandler = (
 		},
 	});
 };
-
-export default errorHandler;

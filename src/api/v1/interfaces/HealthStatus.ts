@@ -1,4 +1,4 @@
-export default interface HealthStatus {
+export interface HealthStatus {
 	status: string;
 	version: string;
 }

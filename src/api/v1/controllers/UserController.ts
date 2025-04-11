@@ -1,27 +1,27 @@
 import { Request, Response, NextFunction } from "express";
 import { NotImplementedError } from "@/errors";
+import { UserService } from "@/api/v1/services";
 
-// TODO USER SERVICE
-type UserService = any;
+export class UserController {
+	private userService: UserService = new UserService();
 
-class UserController {
-	constructor(private readonly userService: UserService) {}
-
-	async create(req: Request, res: Response, next: NextFunction) {
+	create = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			throw new NotImplementedError("Create");
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async getAll(req: Request, res: Response, next: NextFunction) {
+	getAll = async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			throw new NotImplementedError("Get all");
+			const data = await this.userService.getAll();
+
+			res.status(200).json(data);
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
 	async getById(req: Request, res: Response, next: NextFunction) {
 		try {
@@ -47,5 +47,3 @@ class UserController {
 		}
 	}
 }
-
-export default UserController;
