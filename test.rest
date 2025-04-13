@@ -19,7 +19,8 @@ Content-Type: application/json
   "name": "John Doe",
   "email": "john.doe@example.com",
   "password": "123123",
-  "age": 30
+  "age": 30,
+  "cpf": 123
 }
 
 ### Update a user by ID

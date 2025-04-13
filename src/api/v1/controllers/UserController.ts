@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { BadRequestError, NotImplementedError } from "@/errors";
+import { NotImplementedError, ServiceUnavailableError } from "@/errors";
 import { UserService } from "@/api/v1/services";
 import { UserInput, userInputSchema } from "@/api/v1/interfaces";
 
@@ -8,12 +8,9 @@ export class UserController {
 
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
-			const parseResult = userInputSchema.safeParse(req.body);
-			if (!parseResult.success) {
-				throw new BadRequestError(parseResult.error.message);
-			}
+			const data = userInputSchema.parse(req.body);
 
-			const newUser = await this.userService.create(parseResult.data);
+			const newUser = await this.userService.create(data);
 			res.status(200).json(newUser);
 		} catch (error) {
 			next(error);
