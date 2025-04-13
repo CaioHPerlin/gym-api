@@ -18,7 +18,7 @@ Content-Type: application/json
 {
   "name": "John Doe",
   "email": "john.doe@example.com",
-  "passwordHash": "hashed_password_here",
+  "password": "123123",
   "age": 30
 }
 

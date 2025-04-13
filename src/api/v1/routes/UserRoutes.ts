@@ -5,9 +5,7 @@ import { UserRepository } from "@/api/v1/repositories";
 
 const UserRoutes = Router();
 
-const userRepository = new UserRepository();
-const userService = new UserService(userRepository);
-const userController = new UserController(userService);
+const userController = new UserController();
 
 UserRoutes.get("/", userController.getAll);
 UserRoutes.get("/:id", userController.getById);
