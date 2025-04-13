@@ -8,7 +8,7 @@ export const userInputSchema = z.object({
 	oab: z.string().optional(),
 	email: z.string().email(),
 	password: z.string().min(6),
-	birthDate: z.coerce.date(),
+	birthDate: z.string().date(),
 });
 
 export type UserInput = z.infer<typeof userInputSchema>;
