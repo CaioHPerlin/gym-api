@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { NotImplementedError, ServiceUnavailableError } from "@/errors";
+import { NotImplementedError } from "@/errors";
 import { UserService } from "@/api/v1/services";
-import { UserInput, userInputSchema } from "@/api/v1/interfaces";
+import { userInputSchema } from "@/api/v1/interfaces";
 
 export class UserController {
 	private userService: UserService = new UserService();
@@ -11,7 +11,7 @@ export class UserController {
 			const data = userInputSchema.parse(req.body);
 
 			const newUser = await this.userService.create(data);
-			res.status(200).json(newUser);
+			res.status(201).json(newUser);
 		} catch (error) {
 			next(error);
 		}

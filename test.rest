@@ -20,7 +20,9 @@ Content-Type: application/json
   "email": "john.doe@example.com",
   "password": "123123",
   "age": 30,
-  "cpf": 123
+  "cpf": "07084274138",
+  "rg": "07084274138",
+  "birthDate": "2006-05-02"
 }
 
 ### Update a user by ID
