@@ -17,7 +17,7 @@ export class UserController {
 		}
 	}
 
-	async getAll(req: Request, res: Response, next: NextFunction) {
+	async getAll(_: Request, res: Response, next: NextFunction) {
 		try {
 			const data = await this.userService.getAll();
 
@@ -34,7 +34,6 @@ export class UserController {
 			next(error);
 		}
 	}
-
 	async update(req: Request, res: Response, next: NextFunction) {
 		try {
 			throw new NotImplementedError("Update");

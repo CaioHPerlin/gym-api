@@ -11,6 +11,6 @@ export class UserService {
 	}
 
 	async getAll() {
-		return this.userRepository.getAll();
+		return await this.userRepository.getAll();
 	}
 }
