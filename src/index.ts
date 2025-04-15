@@ -3,7 +3,7 @@ import { createApp } from "./app";
 import { closeDB } from "@/config/db";
 import env from "@/config/env";
 
-const PORT = { env };
+const { PORT } = env;
 
 async function bootstrap() {
 	// Create configured app
