@@ -1,11 +1,12 @@
+// src/api/v1/services/user.service.ts
 import { UserInput, UserInsert } from "@/api/v1/interfaces";
 import { UserRepository } from "@/api/v1/repositories";
-import { AuthService } from "@/api/v1/services";
+import { PasswordService } from "@/api/v1/services/PasswordService";
 import { ConflictError } from "@/errors";
 
 export class UserService {
-	private userRepository: UserRepository = new UserRepository();
-	private authService: AuthService = new AuthService();
+	private readonly userRepository: UserRepository = new UserRepository();
+	private readonly passwordService: PasswordService = new PasswordService();
 
 	async create(data: UserInput) {
 		const existingUser = await this.userRepository.getByEmail(data.email);
@@ -13,15 +14,20 @@ export class UserService {
 			throw new ConflictError("User with this email already exists");
 		}
 
-		const passwordHash = await this.authService.hashPassword(data.password);
+		const passwordHash = await this.passwordService.hashPassword(data.password);
 		const insertData: UserInsert = {
 			...data,
-			passwordHash: passwordHash,
+			passwordHash,
 		};
-		return await this.userRepository.create(insertData);
+
+		return this.userRepository.create(insertData);
+	}
+
+	async findByEmail(email: string) {
+		return this.userRepository.getByEmail(email);
 	}
 
 	async getAll() {
-		return await this.userRepository.getAll();
+		return this.userRepository.getAll();
 	}
 }
