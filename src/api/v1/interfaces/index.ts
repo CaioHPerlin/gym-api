@@ -1,2 +1,2 @@
-export * from "./HealthStatus";
-export * from "./User";
+export * from "./HealthStatusInterface";
+export * from "./UserInterface";
