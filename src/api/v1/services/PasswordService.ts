@@ -1,14 +1,13 @@
 import * as bcrypt from "bcrypt";
 
 export class PasswordService {
-	private readonly SALT_ROUNDS = 10;
+	private readonly saltRounds = 10;
 
-	async hashPassword(password: string) {
-		const salt = await bcrypt.genSalt(this.SALT_ROUNDS);
-		return await bcrypt.hash(password, salt);
+	async hash(password: string): Promise<string> {
+		return bcrypt.hash(password, this.saltRounds);
 	}
 
-	async comparePassword(password: string, hash: string) {
-		return await bcrypt.compare(password, hash);
+	async compare(raw: string, hash: string): Promise<boolean> {
+		return bcrypt.compare(raw, hash);
 	}
 }
