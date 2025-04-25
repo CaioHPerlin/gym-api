@@ -5,7 +5,6 @@ export const userInputSchema = z.object({
 	name: z.string(),
 	email: z.string().email(),
 	password: z.string().min(6),
-	birthDate: z.string().date(),
 });
 
 export type UserInput = z.infer<typeof userInputSchema>;

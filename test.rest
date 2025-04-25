@@ -18,8 +18,7 @@ Content-Type: application/json
 {
   "name": "John Doe",
   "email": "john.doe@example.com",
-  "password": "123123",
-  "birthDate": "2006-05-02"
+  "password": "123123"
 }
 
 ### Log into user
