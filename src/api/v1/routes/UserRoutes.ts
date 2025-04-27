@@ -1,7 +1,5 @@
 import { Router } from "express";
 import { UserController } from "../controllers";
-import { UserService } from "@/api/v1/services";
-import { UserRepository } from "@/api/v1/repositories";
 
 const UserRoutes = Router();
 

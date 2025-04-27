@@ -11,7 +11,7 @@ export class UserService {
 	async create(data: UserInput): Promise<UserSelect> {
 		const existingUser = await this.userRepository.getByEmail(data.email);
 		if (existingUser) {
-			throw new ConflictError("User with this email already exists");
+			throw new ConflictError("There already exists a User with this email address");
 		}
 
 		const passwordHash = await this.passwordService.hash(data.password);
