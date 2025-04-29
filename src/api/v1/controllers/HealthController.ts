@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { HealthStatus } from "../interfaces";
+import { HealthStatus } from "../types";
 import { HealthService } from "../services";
 
 export class HealthController {

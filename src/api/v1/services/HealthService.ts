@@ -1,5 +1,5 @@
 import { ServiceUnavailableError } from "@/errors";
-import { HealthStatus } from "../interfaces";
+import { HealthStatus } from "../types";
 
 export class HealthService {
 	public static get healthStatus(): HealthStatus {

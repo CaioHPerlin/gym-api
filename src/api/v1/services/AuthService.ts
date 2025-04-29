@@ -1,7 +1,7 @@
 import { UserService } from "./UserService";
 import { PasswordService } from "./PasswordService";
 import { UnauthorizedError } from "@/errors";
-import { LoginInput } from "@/api/v1/interfaces/AuthInterface";
+import { JWTAccessPayload, JWTRefreshPayload, LoginInput } from "@/api/v1/types";
 import * as jwt from "jsonwebtoken";
 import env from "@/config/env";
 
@@ -24,8 +24,8 @@ export class AuthService {
 		if (!user.isActive) throw new UnauthorizedError("This account is currently disabled");
 
 		// User exists and credentials are valid. Sign JWTs.
-		const accessPayload: JWTAcessPayload = {
-			sub: user.id,
+		const accessPayload: JWTAccessPayload = {
+			sub: user.id.toString(),
 			email: user.email,
 			name: user.name,
 		};

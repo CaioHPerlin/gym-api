@@ -9,11 +9,11 @@ export type LoginInput = z.infer<typeof loginInputSchema>;
 
 // JWT
 export type JWTAccessPayload = {
-	sub: number;
+	sub: string;
 	email: string;
 	name: string;
 };
 
 export type JWTRefreshPayload = {
-	sub: number;
+	sub: string;
 };

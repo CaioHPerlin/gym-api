@@ -1,4 +1,4 @@
-import { loginInputSchema } from "@/api/v1/interfaces/AuthInterface";
+import { loginInputSchema } from "@/api/v1/types/AuthInterface";
 import { AuthService } from "@/api/v1/services";
 import { NextFunction, Request, Response } from "express";
 

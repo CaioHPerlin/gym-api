@@ -1,5 +1,5 @@
 // src/api/v1/services/user.service.ts
-import { UserInput, UserInsert, UserSelect } from "@/api/v1/interfaces";
+import { UserInput, UserInsert, UserSelect } from "@/api/v1/types";
 import { UserRepository } from "@/api/v1/repositories";
 import { PasswordService } from "@/api/v1/services";
 import { ConflictError } from "@/errors";

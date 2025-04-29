@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { NotImplementedError } from "@/errors";
 import { UserService } from "@/api/v1/services";
-import { userInputSchema } from "@/api/v1/interfaces";
+import { userInputSchema } from "@/api/v1/types";
 
 export class UserController {
 	private userService: UserService = new UserService();

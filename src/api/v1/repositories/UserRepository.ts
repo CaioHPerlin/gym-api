@@ -1,4 +1,4 @@
-import { UserInsert, UserSelect } from "@/api/v1/interfaces";
+import { UserInsert, UserSelect } from "@/api/v1/types";
 import { User } from "@/api/v1/models";
 import db from "@/config/db";
 import { eq } from "drizzle-orm";
