@@ -9,8 +9,16 @@ export class AuthController {
 		try {
 			const data = loginInputSchema.parse(req.body);
 
-			const response = await this.authService.login(data);
-			res.status(200).json(response);
+			const { user, accessToken, refreshToken } = await this.authService.login(data);
+
+			res.cookie("refreshToken", refreshToken, {
+				path: "/auth/refresh", // TODO: Not yet implemented
+				httpOnly: true,
+				secure: true,
+				sameSite: "strict",
+				maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+			});
+			res.status(200).json({ user, accessToken });
 		} catch (err) {
 			next(err);
 		}

@@ -1,7 +1,12 @@
 import { UserService } from "./UserService";
 import { PasswordService } from "./PasswordService";
 import { UnauthorizedError } from "@/errors";
-import { JWTAccessPayload, JWTRefreshPayload, LoginInput } from "@/api/v1/types";
+import {
+	JWTAccessPayload,
+	JWTRefreshPayload,
+	LoginInput,
+	UserSelect,
+} from "@/api/v1/types";
 import * as jwt from "jsonwebtoken";
 import env from "@/config/env";
 
@@ -10,6 +15,7 @@ export class AuthService {
 	private readonly passwordService = new PasswordService();
 
 	async login({ email, password }: LoginInput): Promise<{
+		user: UserSelect;
 		accessToken: string;
 		refreshToken: string;
 	}> {
@@ -42,6 +48,6 @@ export class AuthService {
 			expiresIn: "1d",
 		});
 
-		return { accessToken, refreshToken };
+		return { user, accessToken, refreshToken };
 	}
 }
