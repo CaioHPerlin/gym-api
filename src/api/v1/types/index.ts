@@ -1,3 +1,3 @@
-export * from "./HealthStatusInterface";
-export * from "./UserInterface";
-export * from "./AuthInterface";
+export * from "./HealthTypes";
+export * from "./UserTypes";
+export * from "./AuthTypes";
