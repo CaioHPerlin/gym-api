@@ -12,6 +12,8 @@ const envSchema = z.object({
 	PORT: z.string().optional(),
 	DEBUG: z.string().optional(),
 	NODE_ENV: z.enum(["development", "production"]).optional(),
+	ACCESS_TOKEN_SECRET: z.string(),
+	REFRESH_TOKEN_SECRET: z.string(),
 });
 
 const parsed = envSchema.safeParse(process.env);

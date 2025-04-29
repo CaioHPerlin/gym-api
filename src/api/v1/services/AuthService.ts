@@ -8,10 +8,10 @@ export class AuthService {
 	private readonly userService = new UserService();
 	private readonly passwordService = new PasswordService();
 
-	async login({
-		email,
-		password,
-	}: LoginInput): Promise<{ user: UserSelect; token: string }> {
+	async login({ email, password }: LoginInput): Promise<{
+		user: UserSelect;
+		token: string;
+	}> {
 		const user = await this.userService.findByEmail(email);
 		if (!user) throw new UnauthorizedError("Invalid credentials");
 
