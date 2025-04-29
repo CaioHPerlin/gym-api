@@ -24,17 +24,21 @@ export class AuthService {
 		if (!user.isActive) throw new UnauthorizedError("This account is currently disabled");
 
 		// User exists and credentials are valid. Sign JWTs.
-		const payload = {
+		const accessPayload: JWTAcessPayload = {
 			sub: user.id,
 			email: user.email,
 			name: user.name,
 		};
 
-		const accessToken = jwt.sign(payload, env.ACCESS_TOKEN_SECRET, {
+		const refreshPayload: JWTRefreshPayload = {
+			sub: accessPayload.sub,
+		};
+
+		const accessToken = jwt.sign(accessPayload, env.ACCESS_TOKEN_SECRET, {
 			expiresIn: "30m",
 		});
 
-		const refreshToken = jwt.sign({ sub: payload.sub }, env.REFRESH_TOKEN_SECRET, {
+		const refreshToken = jwt.sign(refreshPayload, env.REFRESH_TOKEN_SECRET, {
 			expiresIn: "1d",
 		});
 

@@ -6,3 +6,14 @@ export const loginInputSchema = z.object({
 });
 
 export type LoginInput = z.infer<typeof loginInputSchema>;
+
+// JWT
+export type JWTAccessPayload = {
+	sub: number;
+	email: string;
+	name: string;
+};
+
+export type JWTRefreshPayload = {
+	sub: number;
+};
