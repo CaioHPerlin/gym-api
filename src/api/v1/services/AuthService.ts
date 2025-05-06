@@ -50,4 +50,33 @@ export class AuthService {
 
 		return { user, accessToken, refreshToken };
 	}
+
+	async refresh(refreshToken: string): Promise<{
+		user: UserSelect;
+		accessToken: string;
+	}> {
+		const payload = jwt.verify(
+			refreshToken,
+			env.REFRESH_TOKEN_SECRET
+		) as JWTRefreshPayload;
+
+		const user = await this.userService.findById(parseInt(payload.sub));
+		if (!user) throw new UnauthorizedError("Invalid credentials");
+		if (!user.isActive) throw new UnauthorizedError("This account is currently disabled");
+
+		const accessPayload: JWTAccessPayload = {
+			sub: payload.sub,
+			email: user.email,
+			name: user.name,
+		};
+
+		const accessToken = jwt.sign(accessPayload, env.ACCESS_TOKEN_SECRET, {
+			expiresIn: "30m",
+		});
+
+		return {
+			user,
+			accessToken,
+		};
+	}
 }

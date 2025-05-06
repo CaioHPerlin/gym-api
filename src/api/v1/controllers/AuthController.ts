@@ -1,6 +1,7 @@
 import { loginInputSchema } from "@/api/v1/types/AuthTypes";
 import { AuthService } from "@/api/v1/services";
 import { NextFunction, Request, Response } from "express";
+import { UnauthorizedError } from "@/errors";
 
 export class AuthController {
 	private readonly authService: AuthService = new AuthService();
@@ -18,6 +19,20 @@ export class AuthController {
 				sameSite: "strict",
 				maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 			});
+			res.status(200).json({ user, accessToken });
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async refresh(req: Request, res: Response, next: NextFunction) {
+		try {
+			const refreshToken = req.cookies.refreshToken;
+			if (!refreshToken) {
+				throw new UnauthorizedError("This session has expired. Please log in again.");
+			}
+
+			const { user, accessToken } = await this.authService.refresh(refreshToken);
 			res.status(200).json({ user, accessToken });
 		} catch (err) {
 			next(err);
