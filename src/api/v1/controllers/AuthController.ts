@@ -27,7 +27,7 @@ export class AuthController {
 
 	async refresh(req: Request, res: Response, next: NextFunction) {
 		try {
-			const refreshToken = req.cookies.refreshToken;
+			const { refreshToken } = req.cookies;
 			if (!refreshToken) {
 				throw new UnauthorizedError("This session has expired. Please log in again.");
 			}

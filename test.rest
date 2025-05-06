@@ -22,13 +22,16 @@ Content-Type: application/json
 }
 
 ### Log into user
-POST {{v1}}/auth
+POST {{v1}}/auth/login
 Content-Type: application/json
 
 {
   "email": "john.doe@example.com",
   "password": "123123"
 }
+
+### Refresh token
+POST {{v1}}/auth/refresh
 
 ### Update a user by ID
 PUT {{v1}}/users/1

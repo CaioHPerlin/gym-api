@@ -5,6 +5,7 @@ const AuthRoutes = Router();
 
 const authController = new AuthController();
 
-AuthRoutes.post("/", authController.login.bind(authController));
+AuthRoutes.post("/login", authController.login.bind(authController));
+AuthRoutes.post("/refresh", authController.refresh.bind(authController));
 
 export default AuthRoutes;

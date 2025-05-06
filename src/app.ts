@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import v1 from "@/api/v1/routes";
 import { errorHandler } from "@/middleware";
@@ -13,6 +14,7 @@ export async function createApp() {
 
 	// General Middleware
 	app.use(cors());
+	app.use(cookieParser());
 	app.use(express.json());
 
 	// 3. API Routes
