@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { UserController } from "../controllers";
+import { authenticate } from "@/middleware";
 
 const UserRoutes = Router();
-
 const userController = new UserController();
+
+UserRoutes.use(authenticate);
 
 UserRoutes.get("/", userController.getAll.bind(userController));
 UserRoutes.get("/:id", userController.getById.bind(userController));
