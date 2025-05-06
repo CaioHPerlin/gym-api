@@ -9,7 +9,7 @@ export class UserService {
 	private readonly passwordService: PasswordService = new PasswordService();
 
 	async create(data: UserInput): Promise<UserSelect> {
-		const existingUser = await this.userRepository.getByEmail(data.email);
+		const existingUser = await this.userRepository.findByEmail(data.email);
 		if (existingUser) {
 			throw new ConflictError("There already exists a User with this email address");
 		}
@@ -24,7 +24,11 @@ export class UserService {
 	}
 
 	async findByEmail(email: string): Promise<UserSelect | null> {
-		return this.userRepository.getByEmail(email);
+		return this.userRepository.findByEmail(email);
+	}
+
+	async findById(id: number): Promise<UserSelect | null> {
+		return this.userRepository.findById(id);
 	}
 
 	async getAll(): Promise<UserSelect[]> {
