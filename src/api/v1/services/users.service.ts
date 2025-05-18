@@ -20,6 +20,22 @@ export class UsersService {
 		return this.toUserDto(savedUser);
 	}
 
+	async findAll(): Promise<UserDto[]> {
+		const users = await this.usersRepository.findAll();
+		return users.map(this.toUserDto);
+	}
+
+	async findById(id: number): Promise<UserDto> {
+		const user = await this.usersRepository.findById(id);
+		if (!user) throw new NotFoundError(`User with id ${id} not found`);
+		return this.toUserDto(user);
+	}
+
+	async findByEmail(email: string): Promise<UserDto | null> {
+		const user = await this.usersRepository.findByEmail(email);
+		return user ? this.toUserDto(user) : null;
+	}
+
 	async update(id: number, data: UpdateUserDto): Promise<UserDto> {
 		await this.findById(id);
 		if (data.email) await this.validateEmailUniqueness(data.email);
@@ -36,20 +52,11 @@ export class UsersService {
 		return this.toUserDto(updatedUser);
 	}
 
-	async findById(id: number): Promise<UserDto> {
-		const user = await this.usersRepository.findById(id);
-		if (!user) throw new NotFoundError(`User with id ${id} not found`);
+	async delete(id: number): Promise<UserDto> {
+		await this.findById(id);
+		const user = await this.usersRepository.delete(id);
+
 		return this.toUserDto(user);
-	}
-
-	async findByEmail(email: string): Promise<UserDto | null> {
-		const user = await this.usersRepository.findByEmail(email);
-		return user ? this.toUserDto(user) : null;
-	}
-
-	async findAll(): Promise<UserDto[]> {
-		const users = await this.usersRepository.findAll();
-		return users.map(this.toUserDto);
 	}
 
 	private async validateEmailUniqueness(email: string): Promise<void> {

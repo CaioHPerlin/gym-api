@@ -28,4 +28,9 @@ export class UsersRepository {
 		const [user] = await db.update(users).set(data).where(eq(users.id, id)).returning();
 		return user;
 	}
+
+	async delete(id: number): Promise<UserDbSelect> {
+		const [user] = await db.delete(users).where(eq(users.id, id)).returning();
+		return user;
+	}
 }

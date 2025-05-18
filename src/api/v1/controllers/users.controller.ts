@@ -1,8 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { NotImplementedError } from "@/errors";
-import z from "zod";
 import { createUserSchema, updateUserSchema } from "@/api/v1/schemas";
 import { UsersService } from "@/api/v1/services";
+import { NextFunction, Request, Response } from "express";
+import z from "zod";
 
 export class UserController {
 	private idParamsSchema = z.object({
@@ -57,7 +56,10 @@ export class UserController {
 
 	async delete(req: Request, res: Response, next: NextFunction) {
 		try {
-			throw new NotImplementedError("Delete");
+			const { id } = this.idParamsSchema.parse(req.params);
+
+			const data = await this.userService.delete(id);
+			res.status(200).json(data);
 		} catch (error) {
 			next(error);
 		}
