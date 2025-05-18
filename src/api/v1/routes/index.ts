@@ -1,7 +1,7 @@
 import { Router } from "express";
-import UserRoutes from "@/api/v1/routes/UserRoutes";
-import HealthRoutes from "@/api/v1/routes/HealthRoutes";
-import AuthRoutes from "@/api/v1/routes/AuthRoutes";
+import UserRoutes from "@/api/v1/routes/users.routes";
+import HealthRoutes from "@/api/v1/routes/health.routes";
+import AuthRoutes from "@/api/v1/routes/auth.routes";
 
 const v1 = Router();
 

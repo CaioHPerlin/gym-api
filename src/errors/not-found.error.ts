@@ -1,4 +1,4 @@
-import { CustomError } from "@/errors/CustomError";
+import { CustomError } from "@/errors/custom.error";
 
 export class NotFoundError extends CustomError {
 	constructor(message: string = "Not Found") {

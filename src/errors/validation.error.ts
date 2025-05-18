@@ -1,4 +1,4 @@
-import { CustomError } from "@/errors/CustomError";
+import { CustomError } from "@/errors/custom.error";
 import { ZodError } from "zod";
 
 export class ValidationError extends CustomError {

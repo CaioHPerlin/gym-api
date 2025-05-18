@@ -1,3 +1,3 @@
-export * from "./HealthController";
-export * from "./UserController";
-export * from "./AuthController";
+export * from "./health.controller";
+export * from "./users.controller";
+export * from "./auth.controller";

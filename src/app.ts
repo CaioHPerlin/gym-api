@@ -13,7 +13,7 @@ export async function createApp() {
 	const app = express();
 
 	// General Middleware
-	app.use(cors());
+	app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 	app.use(cookieParser());
 	app.use(express.json());
 
